@@ -225,7 +225,7 @@ data_dir = "{{ kapacitor_data_dir }}"
   # Visit https://slack.com/services/new/incoming-webhook
   # to add new webhook for Kapacitor.
   workspace = "digprodlab.slack.com"
-  url = "https://hooks.slack.com/services/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"
+  url = "{{ kapacitor_slack_new_url }}"
   # Default channel for messages
   channel = "#o2priority-nonprod-sys-alerts"
   # If true the all alerts will be sent to Slack
