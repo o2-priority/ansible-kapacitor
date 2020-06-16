@@ -199,13 +199,35 @@ data_dir = "{{ kapacitor_data_dir }}"
 [slack]
   # Configure Slack.
   enabled = {{ kapacitor_slack_enabled|default(false)|bool|lower }}
+  default = true
   # The Slack webhook URL, can be obtained by addding
   # an Incoming Webhook integration.
   # Visit https://slack.com/services/new/incoming-webhook
   # to add new webhook for Kapacitor.
+  workspace = "o2priority.slack.com"
   url = "{{ kapacitor_slack_url }}"
   # Default channel for messages
   channel = "{{ kapacitor_slack_channel }}"
+  # If true the all alerts will be sent to Slack
+  # without explicitly marking them in the TICKscript.
+  global = {{ kapacitor_slack_global|default(false)|bool|lower }}
+  # Only applies if global is true.
+  # Sets all alerts in state-changes-only mode,
+  # meaning alerts will only be sent if the alert state changes.
+  state-changes-only = {{ kapacitor_slack_state_changes_only|default(false)|bool|lower }}
+
+[slack]
+  # Configure Slack.
+  enabled = {{ kapacitor_slack_enabled|default(false)|bool|lower }}
+  default = false
+  # The Slack webhook URL, can be obtained by addding
+  # an Incoming Webhook integration.
+  # Visit https://slack.com/services/new/incoming-webhook
+  # to add new webhook for Kapacitor.
+  workspace = "digprodlab.slack.com"
+  url = "https://hooks.slack.com/services/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"
+  # Default channel for messages
+  channel = "#o2priority-nonprod-sys-alerts"
   # If true the all alerts will be sent to Slack
   # without explicitly marking them in the TICKscript.
   global = {{ kapacitor_slack_global|default(false)|bool|lower }}
