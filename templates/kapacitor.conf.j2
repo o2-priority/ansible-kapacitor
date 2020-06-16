@@ -196,7 +196,7 @@ data_dir = "{{ kapacitor_data_dir }}"
   # without explicitly marking them in the TICKscript.
   global = {{ kapacitor_pagerduty_global|default(false)|bool|lower }}
 
-[slack]
+[[slack]]
   # Configure Slack.
   enabled = {{ kapacitor_slack_enabled|default(false)|bool|lower }}
   default = true
@@ -216,7 +216,7 @@ data_dir = "{{ kapacitor_data_dir }}"
   # meaning alerts will only be sent if the alert state changes.
   state-changes-only = {{ kapacitor_slack_state_changes_only|default(false)|bool|lower }}
 
-[slack]
+[[slack]]
   # Configure Slack.
   enabled = {{ kapacitor_slack_enabled|default(false)|bool|lower }}
   default = false
