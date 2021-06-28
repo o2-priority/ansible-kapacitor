@@ -6,16 +6,16 @@
 #    url:   "{{ kapacitor_signing_key_url }}"
 #    state: present
 
-- name: Download kapacitor apt public signing key
-  command:
-      wget -q "{{ kapacitor_signing_key_url }}" -O /var/tmp/influxdb.key
-  args:
-    creates: /var/tmp/influxdb.key
-
-- name: Install kapacitor apt public signing key
-  apt_key:
-    file:  /var/tmp/influxdb.key
-    state: present
+#- name: Download kapacitor apt public signing key
+#  command:
+#      wget -q "{{ kapacitor_signing_key_url }}" -O /var/tmp/influxdb.key
+#  args:
+#    creates: /var/tmp/influxdb.key
+#
+#- name: Install kapacitor apt public signing key
+#  apt_key:
+#    file:  /var/tmp/influxdb.key
+#    state: present
 
 # Currently this is failing in ubuntu 14.04 With : Failed to fetch https://repos.influxdata.com/ubuntu/dists/trusty/stable/binary-amd64/Packages
 # gnutls_handshake() failed: A TLS packet with unexpected length was received.
@@ -27,8 +27,14 @@
 #     update_cache: yes
 #     state:        present
 
-- name: Install kapacitor
-  apt:
-    name:  "kapacitor={{ kapacitor_version|default('*') }}"
-    state: present
+#- name: Install kapacitor
+#  apt:
+#    name:  "kapacitor={{ kapacitor_version|default('*') }}"
+#    state: present
+
+- name: Download kapacitor deb package
+  shell: "wget -O /tmp/influxdb.deb {{ kapacitor_deb_package }}"
+
+- name: Install kapacitor deb package
+  shell: "dpkg -i /tmp/influxdb.deb"
 
